@@ -62,3 +62,24 @@ ssh -i ~/.ssh/key1 user@<server-DNS>
 ssh -i ~/.ssh/key2 user@<server-DNS>
 ```
 Both should log you into the server successfully.
+
+### 6. Configure ~/.ssh/config
+
+To simplify connections, edit ~/.ssh/config on your local machine:
+```bash
+Host myserver-key1
+    HostName <server-DNS>
+    User user
+    IdentityFile ~/.ssh/key1
+
+Host myserver-key2
+    HostName <server-DNS>
+    User user
+    IdentityFile ~/.ssh/key2
+```
+
+Now you can connect with:
+```bash
+ssh myserver-key1
+ssh myserver-key2
+```
