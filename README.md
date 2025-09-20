@@ -62,7 +62,6 @@ ssh-keygen -t rsa -f ~/.ssh/key2 -C "key2"
 This creates:
 - `~/.ssh/key1` and `~/.ssh/key1.pub`
 - `~/.ssh/key2` and `~/.ssh/key2.pub`
-#### 4. Add Public Keys to the Server
 ### 2. Add Public Keys to the Server
 
 On the server (`user@<server-DNS>`):
@@ -77,7 +76,6 @@ echo "<contents-of-key1.pub>" >> ~/.ssh/authorized_keys
 echo "<contents-of-key2.pub>" >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
-#### 5. Test SSH Connections with Both Keys
 ### 3. Test SSH Connections with Both Keys
 
 From your local machine:
@@ -87,7 +85,6 @@ ssh -i ~/.ssh/key2 ec2-user@<server-DNS>
 ```
 Both should log you into the server successfully.
 
-#### 6. Configure ~/.ssh/config
 ### 4. Configure ~/.ssh/config
 
 To simplify connections, edit ~/.ssh/config on your local machine:
@@ -108,5 +105,3 @@ Now you can connect with:
 ssh myserver-key1
 ssh myserver-key2
 ```
-
-## Using Terraform (Coming Soon)
