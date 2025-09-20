@@ -146,3 +146,6 @@ bantime   = 3600
 ```bash
 sudo systemctl restart fail2ban
 ```
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/MGhaith/SSH-Remote-Server-Setup/blob/main/LICENSE) file for details.
