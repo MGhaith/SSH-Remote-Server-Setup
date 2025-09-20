@@ -27,7 +27,7 @@ This project demonstrates how to set up a basic Linux server on AWS, configure i
 chmod 400 aws-key.pem
 ssh -i aws-key.pem ec2-user@<server-DNS>
 ```
-> **Note**: In the default AWS setting the the EC2 server user is `ec2-user`.
+> **Note**: In the default AWS setting the the EC2 Linux server user is `ec2-user`.
 
 ### Using Terraform
 #### 1. Prerequisites
