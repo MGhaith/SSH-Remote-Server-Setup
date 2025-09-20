@@ -28,8 +28,30 @@ chmod 400 aws-key.pem
 ssh -i aws-key.pem ec2-user@<server-DNS>
 ```
 > **Note**: In the default AWS setting the the EC2 server user is `ec2-user`.
-#### 3. Create Two New SSH Key Pairs
-> **Note**: In this step, we create two new SSH key pairs. This is not a necessary step.
+
+### Using Terraform
+#### 1. Prerequisites
+- [AWS account](https://aws.amazon.com/)
+- AWS CLI configured with credentials (`aws configure`)
+- Terraform installed (`terraform -v`)
+- SSH installed locally
+
+#### 2. Generate the main SSH Key
+```bash
+ssh-keygen -t rsa -f ~/.ssh/id_rsa.pub -C "terraform-key"
+```
+#### 3. Deploy with Terraform
+```bash
+terraform init
+terraform apply -auto-approve
+```
+#### 4. Connect to the Server with the private key
+```bash
+ssh -i "~/.ssh/id_rsa" ec2-user@<server-DNS>
+```
+
+## Adding Multiple Key Pairs
+### 1. Create Two New SSH Key Pairs
 
 On your local machine:
 ```bash
@@ -41,6 +63,7 @@ This creates:
 - `~/.ssh/key1` and `~/.ssh/key1.pub`
 - `~/.ssh/key2` and `~/.ssh/key2.pub`
 #### 4. Add Public Keys to the Server
+### 2. Add Public Keys to the Server
 
 On the server (`user@<server-DNS>`):
 ```bash
@@ -55,6 +78,7 @@ echo "<contents-of-key2.pub>" >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 ```
 #### 5. Test SSH Connections with Both Keys
+### 3. Test SSH Connections with Both Keys
 
 From your local machine:
 ```bash
@@ -64,6 +88,7 @@ ssh -i ~/.ssh/key2 ec2-user@<server-DNS>
 Both should log you into the server successfully.
 
 #### 6. Configure ~/.ssh/config
+### 4. Configure ~/.ssh/config
 
 To simplify connections, edit ~/.ssh/config on your local machine:
 ```bash
