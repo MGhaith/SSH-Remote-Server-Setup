@@ -105,3 +105,44 @@ Now you can connect with:
 ssh myserver-key1
 ssh myserver-key2
 ```
+## Adding Fail2Ban For Security
+### 1. Install Fail2Ban
+The default package manager is DNF (Dandified YUM), which is the successor to YUM.
+```bash
+sudo dnf install fail2ban -y
+```
+
+Check the version:
+```bash
+fail2ban-client --version
+```
+### 2. Enable and Start the Service
+```bash
+sudo systemctl enable --now fail2ban
+sudo systemctl status fail2ban
+```
+### 3. Configure Fail2Ban for SSH
+
+Create a local configuration file:
+```bash
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+```
+
+Edit `/etc/fail2ban/jail.local`:
+```bash
+sudo nano /etc/fail2ban/jail.local
+```
+
+Make sure the [sshd] section looks like this:
+```ini
+[sshd]
+enabled   = true
+port      = ssh
+logpath   = /var/log/secure
+maxretry  = 5
+bantime   = 3600
+```
+### 4. Restart Fail2Ban
+```bash
+sudo systemctl restart fail2ban
+```
