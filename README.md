@@ -1,4 +1,4 @@
-# SSH Remote Server Setup(WIP)
+# SSH Remote Server Setup
 
 This project demonstrates how to set up a basic Linux server on AWS, configure it for SSH connections, and manage multiple SSH key pairs.
 
